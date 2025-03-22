@@ -1,2 +1,3 @@
 # SandKit
-A simple prompting framework.
+
+With ❤️
