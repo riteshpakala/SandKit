@@ -48,5 +48,6 @@ public struct AZURE_API {
 public enum APITYPE: String, Equatable, Codable {
     case azure
     case openai
+    case local
 }
 
