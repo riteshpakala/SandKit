@@ -61,16 +61,6 @@ extension ChatGPT {
             let usingModel = model is DefaultChatGPTModel ? defaultModel : model
             
             switch api {
-            case .openai:
-                let chatRequest = ChatRequest.streamed(
-                    model: usingModel,
-                    messages: messages,
-                    withConfig: config
-                )
-
-                print("[ChatGPT] (STREAM) asking with config.")
-                
-                return try await ask(request: chatRequest, isAzure: false)
             case .azure:
                 var chatRequest = ChatRequestAzure.streamed(
                     model: usingModel,
@@ -81,6 +71,16 @@ extension ChatGPT {
                 print("[ChatGPT] (AZURE) asking with config.")
                 
                 return try await askAzure(request: chatRequest)
+            default:
+                let chatRequest = ChatRequest.streamed(
+                    model: usingModel,
+                    messages: messages,
+                    withConfig: config
+                )
+
+                print("[ChatGPT] (STREAM) asking with config.")
+                
+                return try await ask(request: chatRequest, isAzure: false)
                 
             }
         }
@@ -100,15 +100,6 @@ extension ChatGPT {
             let usingModel = model is DefaultChatGPTModel ? defaultModel : model
             
             switch api {
-            case .openai:
-                
-                let chatRequest = ChatRequest.streamed(model: usingModel,
-                                                       messages: messages,
-                                                       withConfig: config)
-
-                print("[ChatGPT] (OPENAI) asking with messages.")
-                
-                return try await ask(request: chatRequest, isAzure: false)
             case .azure:
                 let chatRequest = ChatRequestAzure.streamed(
                     model: usingModel,
@@ -119,6 +110,15 @@ extension ChatGPT {
                 print("[ChatGPT] (AZURE) asking with messages.")
                 
                 return try await askAzure(request: chatRequest)
+            default:
+                
+                let chatRequest = ChatRequest.streamed(model: usingModel,
+                                                       messages: messages,
+                                                       withConfig: config)
+
+                print("[ChatGPT] (OPENAI) asking with messages.")
+                
+                return try await ask(request: chatRequest, isAzure: false)
                 
             }
             

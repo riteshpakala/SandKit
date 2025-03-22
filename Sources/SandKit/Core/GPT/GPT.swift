@@ -59,6 +59,8 @@ public class GPT {
             path = AZURE_API.base
         case .openai:
             path = API.base
+        default:
+            path = API.v1Completion
         }
         
         self.client = APIClient(baseURL: URL(string: path)) { [apiClientRequestHandler] configuration in
@@ -90,6 +92,8 @@ public class GPT {
         case .azure:
             path = AZURE_API.v1Completion
         case .openai:
+            path = API.v1Completion
+        default:
             path = API.v1Completion
         }
         
@@ -123,6 +127,8 @@ public class GPT {
             path = AZURE_API.v1Completion
         case .openai:
             path = API.v1Completion
+        default:
+            path = API.v1Completion
         }
         
         let request = Request<CompletionResponse>(
@@ -151,6 +157,8 @@ public class GPT {
             path = AZURE_API.v1Completion
         case .openai:
             path = API.v1Completion
+        default:
+            path = API.v1Completion
         }
         
         let request = Request<CompletionResponse>(
@@ -178,6 +186,8 @@ public class GPT {
         case .azure:
             path = AZURE_API.v1Completion
         case .openai:
+            path = API.v1Completion
+        default:
             path = API.v1Completion
         }
         

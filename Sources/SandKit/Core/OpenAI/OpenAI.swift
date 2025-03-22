@@ -57,6 +57,8 @@ public class OpenAI {
             path = AZURE_API.base
         case .openai:
             path = API.base
+        default:
+            path = API.base
         }
         
         self.client = APIClient(baseURL: URL(string: path)) { [apiClientRequestHandler] configuration in
@@ -80,6 +82,8 @@ public class OpenAI {
             path = AZURE_API.v1Models
         case .openai:
             path = API.v1Models
+        default:
+            path = API.base
         }
         
         let request = Request<ModelListResponse>(path: path)
@@ -100,6 +104,8 @@ public class OpenAI {
             path = AZURE_API.v1Model(withId: id)
         case .openai:
             path = API.v1Model(withId: id)
+        default:
+            path = API.base
         }
         
         let request = Request<ModelData>(path: path)
@@ -121,6 +127,8 @@ public class OpenAI {
             path = AZURE_API.v1Models
         case .openai:
             path = API.v1Models
+        default:
+            path = API.base
         }
         
         let request = Request<ModelListResponse>(path: path)
@@ -146,6 +154,8 @@ public class OpenAI {
             path = AZURE_API.v1Model(withId: id)
         case .openai:
             path = API.v1Model(withId: id)
+        default:
+            path = API.base
         }
         
         let request = Request<ModelData>(path: path)

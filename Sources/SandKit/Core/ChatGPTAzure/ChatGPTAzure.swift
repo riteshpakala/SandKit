@@ -2,7 +2,7 @@
 //  ChatGPTAzure.swift
 //  
 //
-//  Created by PEXAVC on 6/14/23.
+//  Created by Ritesh Pakala Rao on 6/14/23.
 //
 
 import Foundation

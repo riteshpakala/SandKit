@@ -62,6 +62,8 @@ public class ChatGPT {
             path = AZURE_API.base
         case .openai:
             path = API.base
+        default:
+            path = API.v1Completion
         }
         
         self.client = APIClient(baseURL: URL(string: path)) { [apiClientRequestHandler] configuration in
@@ -99,6 +101,8 @@ public class ChatGPT {
             path = AZURE_API.v1ChatCompletion
         case .openai:
             path = API.v1ChatCompletion
+        default:
+            path = API.v1Completion
         }
         
         let usingModel = model is DefaultChatGPTModel ? defaultModel : model
@@ -121,7 +125,7 @@ public class ChatGPT {
             }
 
             return answer
-        case .openai:
+        default:
             let request = Request<ChatResponse>(
                 path: path,
                 method: .post,
@@ -171,7 +175,7 @@ public class ChatGPT {
             }
 
             return answer
-        case .openai:
+        default:
             path = API.v1ChatCompletion
             
             let request = Request<ChatResponse>(
@@ -199,7 +203,7 @@ public class ChatGPT {
         switch api {
         case .azure:
             path = AZURE_API.v1ChatCompletion
-        case .openai:
+        default:
             path = API.v1ChatCompletion
         }
         
