@@ -3,6 +3,7 @@
 //
 //
 //  Created by Ritesh Pakala Rao on 5/5/23.
+//  More info on MLX and Swift: https://github.com/ml-explore/mlx-swift-examples
 //
 
 import Foundation
@@ -13,32 +14,31 @@ import MLXRandom
 import Tokenizers
 
 public class SandKit {
-    /// This controls which model loads. `phi3_5_4bit` is one of the smaller ones, so this will fit on
-    /// more devices.
     var modelInfo = ""
+    
     let modelConfiguration = LLMModels.DeepSeek.Local.r1_32_distill_qwen_4bit
 
-    /// parameters controlling the output
-    public let maxTokens = 1200
+    /// Parameters controlling the output length
+    let maxTokens: Int
 
     /// update the display every N tokens -- 4 looks like it updates continuously
-    /// and is low overhead.  observed ~15% reduction in tokens/s when updating
-    /// on every token
-    public let displayEveryNTokens = 4
+    /// and is low overhead.  observed ~15% reduction in tokens/s when updating on every N token
+    let displayEveryNTokens: Int
 
-    enum LoadState {
+    public enum LoadState {
         case idle
         case loaded(ModelContainer)
     }
 
-    var loadState = LoadState.idle
+    public var loadState = LoadState.idle
     
-    
-    public init() {
-        
+    public init(maxTokens: Int = 4800,
+                displayEveryNTokens: Int = 4) {
+        self.maxTokens = maxTokens
+        self.displayEveryNTokens = displayEveryNTokens
     }
     
-    public func load() async throws -> ModelContainer {
+    package func load() async throws -> ModelContainer {
         switch loadState {
         case .idle:
             // limit the buffer cache
