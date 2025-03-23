@@ -19,6 +19,7 @@ public struct Markdown: ViewRepresentable {
 
     public init(content: Binding<String>) {
         self._content = content
+        // TODO: Updating colorScheme when it is not installed on a view
         self.theme = colorScheme
     }
     public init(content: Binding<String>, theme: ColorScheme?) {
