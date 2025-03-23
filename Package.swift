@@ -1,11 +1,11 @@
-// swift-tools-version: 5.7
+// swift-tools-version: 5.9
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
     name: "SandKit",
-    platforms: [.iOS(.v14), .macOS(.v12)],
+    platforms: [.iOS(.v14), .macOS(.v14)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -13,6 +13,7 @@ let package = Package(
             targets: ["SandKit"]),
     ],
     dependencies: [
+        .package(url: "https://github.com/ml-explore/mlx-swift-examples/", branch: "main")
         /*.package(url: "https://github.com/shaps80/swift-markdown", branch: "main"),
         .package(url: "https://github.com/shaps80/SwiftUIBackports", .upToNextMajor(from: "2.0.0")),
         .package(url: "https://github.com/raspu/Highlightr.git", from: "2.1.2")*/
@@ -24,6 +25,8 @@ let package = Package(
         .target(
             name: "SandKit",
             dependencies: [
+                .product(name: "MLXLLM", package: "mlx-swift-examples"),
+                .product(name: "MLXLMCommon", package: "mlx-swift-examples")
                 /*.product(name: "Markdown", package: "swift-markdown"),
                 .product(
                     name: "Highlightr",
