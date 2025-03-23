@@ -20,6 +20,7 @@ extension SandKit {
         output: (String, Bool) -> Void
     ) async throws {
         let modelContainer = try await load()
+        
         MLXRandom.seed(UInt64(Date.timeIntervalSinceReferenceDate * 1000))
         
         let generateParameters = GenerateParameters(
@@ -35,22 +36,17 @@ extension SandKit {
             sanitizedPrompt = prompt
         }
         
-        var currentOutput: String = ""
-        
         let result = try await modelContainer.perform { context in
             let input = try await context.processor.prepare(input: .init(prompt: sanitizedPrompt))
             
             return try MLXLMCommon.generate(
                 input: input, parameters: generateParameters, context: context
             ) { tokens in
-                // update the output -- this will make the view show the text as it generates
-                
                 if stream {
                     if tokens.count % displayEveryNTokens == 0 {
                         let text = context.tokenizer.decode(tokens: tokens)
                         
                         if let result = Postprocessor.sanitize(text) {
-                            currentOutput = result
                             output(result, false)
                         }
                     }
