@@ -26,6 +26,11 @@ struct LLMModels {
                 directory: URL(filePath: "/Users/ritesh/Documents/ml/models/llm/DeepSeek-R1-Distill-Qwen-32B-MLX-8Bit", directoryHint: .isDirectory)!,
                 defaultPrompt: "What does Eppur si muove mean?"
             )
+            // 3.44b
+            static public let mistral_nemo_8bit = ModelConfiguration(
+                directory: URL(filePath: "/Users/ritesh/Documents/ml/models/llm/Mistral-Nemo-Instruct-2407-8bit", directoryHint: .isDirectory)!,
+                defaultPrompt: "What does Eppur si muove mean?"
+            )
         }
         // 1.78b
         static public let r1_distill_qwen = ModelConfiguration(
