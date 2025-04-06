@@ -52,6 +52,8 @@ extension SandKit {
                     }
                 }
                 
+                SandLog("Tokens: \(tokens.count) \(maxTokens)")
+                
                 if tokens.count >= maxTokens {
                     return .stop
                 } else {

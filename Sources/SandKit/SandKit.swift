@@ -16,7 +16,7 @@ import Tokenizers
 public class SandKit {
     var modelInfo = ""
     
-    let modelConfiguration = LLMModels.DeepSeek.Local.r1_32_distill_qwen_4bit
+    let modelConfiguration = LLMModels.DeepSeek.Local.mistral_nemo_8bit
 
     /// Parameters controlling the output length
     let maxTokens: Int
@@ -32,7 +32,7 @@ public class SandKit {
 
     public var loadState = LoadState.idle
     
-    public init(maxTokens: Int = 4800,
+    public init(maxTokens: Int = 12000,
                 displayEveryNTokens: Int = 4) {
         self.maxTokens = maxTokens
         self.displayEveryNTokens = displayEveryNTokens
